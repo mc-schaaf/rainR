@@ -2,7 +2,7 @@
 # as compared to an ideal trajectory, as defined by the start and end points
 # importantly, the ideal trajectory is thought of as being of infinite length
 
-RainR_MAD <- function(x_vector, y_vector,
+MAD <- function(x_vector, y_vector,
                    x_start=x_vector[1], y_start=y_vector[1],
                    allign= FALSE, chatty=FALSE) {
 
