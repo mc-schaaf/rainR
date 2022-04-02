@@ -1,11 +1,17 @@
-Package: rainR
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
+Package: rainR
+Title: Some utility function for psychological researach
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
+Version: 0.1.0
+Author: Moritz Schaaf
+Maintainer: Nobody <yourself@somewhere.net>
+Depends:
+    R (>= 3.5.0)
+Imports:
+    data.table (>= 1.13.6)
 License: What license is it under?
+URL: https://github.com/mc-schaaf/rainR
+BugReports: https://github.com/mc-schaaf/rainR/issues
 Encoding: UTF-8
 LazyData: true
