@@ -1,7 +1,7 @@
 # computes the sample Entropy, as based on a Matlab script of Roland Pfister.
 # comes with ABSOLUTELY NO WARRANTY, as this is solely a translation!
 
-sampEn<- function(timeseries_array,
+sampEn <- function(timeseries_array,
                         dimensions=5, tolerance=0.2,
                         standardise=T, tidy=F){
 
