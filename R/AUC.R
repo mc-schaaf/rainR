@@ -7,8 +7,9 @@
 #' @export
 
 AUC <- function(x_vector, y_vector,
-                      x_start=x_vector[1], y_start=y_vector[1],
-                      allign= FALSE, cumulative = FALSE) {
+                x_start=NULL, y_start=NULL,
+                x_end = NULL, y_end=NULL,
+                cumulative = FALSE, RP_style=F) {
 
   # check for optional parameters
   if(is.null(x_start)){x_start = x_vector[1]}
@@ -31,6 +32,8 @@ AUC <- function(x_vector, y_vector,
   # compute differences between (time-) adjacent points
   d_x = x_rot[2:length(x_rot)] - x_rot[1:(length(x_rot)-1)]
   d_y = y_rot[2:length(y_rot)] - y_rot[1:(length(y_rot)-1)]
+
+  if(RP_style){d_x = abs(d_x)}
 
   # compute square under the curve and triangle under the curve
   AUC_increment = d_x*y_rot[1:(length(y_rot))-1] + d_x*d_y*0.5
