@@ -1,10 +1,14 @@
-# computes the sample Entropy, as I understood it
-# comes with ABSOLUTELY NO WARRANTY, not certain whether it is completely correct
+#' @title sampEn
+#'
+#' @description computes the sample Entropy, as I understood it
+#' comes with ABSOLUTELY NO WARRANTY, not certain whether it is completely correct
+#'
+#' @export
 
 sampEn2 <- function(timeseries_array,
                     dimensions = 2,
                     tolerance = 0.2 * sd(timeseries_array),
-                    standardise=F, tidy=F) {
+                    standardise=F) {
 
   # input conversion to mirror variable names of RP
   y = timeseries_array
@@ -38,12 +42,6 @@ sampEn2 <- function(timeseries_array,
     }
   }
 
-  sampen = -log(mat_m1/mat_m)
-
-  if(!tidy){
-    return(sampen)
-  } else {
-    return(rep(sampen, length(timeseries_array)))
-  }
+  return(-log(mat_m1/mat_m))
 }
 

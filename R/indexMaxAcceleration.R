@@ -1,6 +1,10 @@
-# computes the index of the peak acceleration of a line,
-# defined by arrays of x and y coordinates, and assumed to be equidistant in time
-# if absolute = T, returns index of peak acceleration or deceleration of a line
+#' @title indexMaxAcceleration
+#'
+#' @description computes the index of the peak acceleration of a line,
+#' defined by arrays of x and y coordinates, and assumed to be equidistant in time
+#' if absolute = T, returns index of peak acceleration or deceleration of a line
+#'
+#' @export
 
 indexMaxAcceleration <- function(x_vector, y_vector, absolute = F) {
 
@@ -16,6 +20,5 @@ indexMaxAcceleration <- function(x_vector, y_vector, absolute = F) {
     accelerations = abs(accelerations)
   }
 
-  return(rep(which.max(accelerations), length(x_vector)))
-
+  return(which.max(accelerations))
 }

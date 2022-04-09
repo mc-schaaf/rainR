@@ -1,5 +1,9 @@
-# computes the sample Entropy, as based on a Matlab script of Roland Pfister.
-# comes with ABSOLUTELY NO WARRANTY, as this is solely a translation!
+#' @title sampEn
+#'
+#' @description computes the sample Entropy, as based on a Matlab script of Roland Pfister.
+#' comes with ABSOLUTELY NO WARRANTY, as this is solely a translation!
+#'
+#' @export
 
 sampEn <- function(timeseries_array,
                         dimensions=5, tolerance=0.2,
@@ -47,8 +51,7 @@ sampEn <- function(timeseries_array,
   if(!tidy){
     return(-log(A/B))
   } else {
-    out = -log(A[dimensions]/B[dimensions])
-    return(rep(out, length(timeseries_array)))
+    return(-log(A[dimensions]/B[dimensions]))
   }
 
 }

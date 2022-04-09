@@ -1,5 +1,9 @@
-# computes the curvature of a line, defined by arrays of x and y coordinates,
-# as compared to an ideal trajectory, as defined by the start and end points
+#' @title curvature
+#'
+#' @description computes the curvature of a line, defined by arrays of x and y coordinates,
+#' as compared to an ideal trajectory, as defined by the start and end points
+#'
+#' @export
 
 curvature <- function(x_vector, y_vector) {
 
@@ -16,6 +20,5 @@ curvature <- function(x_vector, y_vector) {
   )
   d_real = sum(ds_real)
 
-  return(rep((d_real/d_ideal), length(x_vector)))
-
+  return(d_real/d_ideal)
 }

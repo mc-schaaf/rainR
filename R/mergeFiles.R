@@ -1,8 +1,13 @@
-# reads in the files supplied and merges the data into one data frame via appending
-# Hence, files must have the same data format (number and identity of columns)
-# Returns the merged dataset, with the additional information of the files Name and -Path
+#' @title mergeFiles
+#'
+#' @description reads in the files supplied and merges the data into one data frame via appending
+#' Hence, files must have the same data format (number and identity of columns)
+#' Returns the merged dataset, with the additional information of the files Name and -Path
+#'
+#' @export
 
 mergeFiles <- function(files) {
+
   for (file in files){
     if (exists("dataset")){
       temp_dataset <-  data.table::fread(file)
@@ -17,5 +22,7 @@ mergeFiles <- function(files) {
       dataset$path <- paste(getwd(), sep = "")
     }
   }
+
   return(dataset)
+
 }
