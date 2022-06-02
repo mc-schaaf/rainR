@@ -4,7 +4,24 @@
 #' as compared to an ideal trajectory, as defined by the start and end points
 #' importantly, the ideal trajectory is thought of as being of infinite length
 #'
+#' @param x_vector vector of the x-coordinates of the executed trajectory
+#' @param y_vector vector of the y-coordinates of the executed trajectory
+#' @param x_start x-coordinate of the start point of the ideal trajectory
+#' @param y_start y-coordinate of the start point of the ideal trajectory
+#' @param x_end x-coordinate of the end point of the ideal trajectory
+#' @param y_end y-coordinate of the end point of the ideal trajectory
+#' @param cumulative whether one single number (cumulative=F) or an array of cumulative AUCs should be returned
+#' @param RP_style should areas that stem from a change of direction be added or subtracted?
+#'
+#' @return AUC as single number or as vector of cumulative MADs
+#'
+#' @examples
+#'
+#' data("dat_one_trajectory")
+#' AUC(dat_one_trajectory$xvals, dat_one_trajectory$yvals)
+#'
 #' @export
+#'
 
 AUC <- function(x_vector, y_vector,
                 x_start=NULL, y_start=NULL,

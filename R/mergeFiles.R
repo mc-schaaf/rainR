@@ -2,9 +2,13 @@
 #'
 #' @description reads in the files supplied and merges the data into one data frame via appending
 #' Hence, files must have the same data format (number and identity of columns)
-#' Returns the merged dataset, with the additional information of the files Name and -Path
+#'
+#' @param files iterable of paths with names of the to-be-merged files
+#'
+#' @return merged dataset, with the additional information of the files' names and -paths
 #'
 #' @export
+#' @importFrom data.table "fread"
 
 mergeFiles <- function(files) {
 

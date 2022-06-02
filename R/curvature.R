@@ -1,9 +1,20 @@
 #' @title curvature
 #'
-#' @description computes the curvature of a line, defined by arrays of x and y coordinates,
-#' as compared to an ideal trajectory, as defined by the start and end points
+#' @description computes the curvature of a trajectory, defined by arrays of x and y coordinates,
+#' as compared to an ideal trajectory, as defined by the start and end points of the trajectory
+#'
+#' @param x_vector vector of the x-coordinates of the executed trajectory
+#' @param y_vector vector of the y-coordinates of the executed trajectory
+#'
+#' @return single number corresponding to the curvature
+#'
+#' @examples
+#'
+#' data("dat_one_trajectory")
+#' curvature(dat_one_trajectory$xvals, dat_one_trajectory$yvals)
 #'
 #' @export
+#'
 
 curvature <- function(x_vector, y_vector) {
 

@@ -3,7 +3,18 @@
 #' @description checks how often a certain point is being crossed by an number sequence
 #' where the order of the array indicates timeadjacency
 #'
+#' @param numeric_array array of numbers ordered by their time of appearance
+#' @param relevant_point number which has to be crossed
+#'
+#' @return number of times that numeric_array crosses the relevant_point
+#'
+#' @examples
+#'
+#' data("dat_one_trajectory")
+#' pointCrosses(dat_one_trajectory$xvals)
+#'
 #' @export
+#'
 
 pointCrosses <- function(numeric_array, relevant_point = 0) {
 

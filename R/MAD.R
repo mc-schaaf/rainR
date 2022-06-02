@@ -1,10 +1,25 @@
 #' @title MAD
 #'
-#' @description computes the maximum absolute deviation of a vector of points definied by x and y coordinates,
+#' @description computes the maximum absolute deviation of a vector of points defined by x and y coordinates,
 #' as compared to an ideal trajectory, as defined by the start and end points
 #' importantly, the ideal trajectory is thought of as being of infinite length
 #'
+#' @param x_vector vector of the x-coordinates of the executed trajectory
+#' @param y_vector vector of the y-coordinates of the executed trajectory
+#' @param x_start x-coordinate of the start point of the ideal trajectory
+#' @param y_start y-coordinate of the start point of the ideal trajectory
+#' @param x_end x-coordinate of the end point of the ideal trajectory
+#' @param y_end y-coordinate of the end point of the ideal trajectory
+#'
+#' @return MAD as single number
+#'
+#' @examples
+#'
+#' data("dat_one_trajectory")
+#' MAD(dat_one_trajectory$xvals, dat_one_trajectory$yvals)
+#'
 #' @export
+#'
 
 MAD <- function(x_vector, y_vector,
                  x_start=NULL, y_start=NULL,

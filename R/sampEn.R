@@ -3,7 +3,21 @@
 #' @description computes the sample Entropy, as based on a Matlab script of Roland Pfister.
 #' comes with ABSOLUTELY NO WARRANTY, as this is solely a translation!
 #'
+#' @param timeseries_array array of numbers over which the sampEn is to be computed
+#' @param dimensions number of embedding dimensions for which to compute the sampEn. Sometimes also called "template length"
+#' @param tolerance the tolerance for the comparisons of two number sequences
+#' @param standardise whether the tolerance is to be understood as absolute values or as standardized values
+#' @param tidy whether the output of the function should be RP-style or a single number so it can be applied with tidyverse's "mutate"
+#'
+#' @return returns an array of length "dimensions" with the respective sampEns or a single number, the last element of this array
+#'
+#' @examples
+#'
+#' data("dat_one_trajectory")
+#' sampEn(dat_one_trajectory$xvals)
+#'
 #' @export
+#'
 
 sampEn <- function(timeseries_array,
                         dimensions=5, tolerance=0.2,

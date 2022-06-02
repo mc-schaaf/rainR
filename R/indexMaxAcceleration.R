@@ -1,10 +1,21 @@
 #' @title indexMaxAcceleration
 #'
-#' @description computes the index of the peak acceleration of a line,
+#' @description computes the index of the peak acceleration of a trajectory,
 #' defined by arrays of x and y coordinates, and assumed to be equidistant in time
-#' if absolute = T, returns index of peak acceleration or deceleration of a line
+#'
+#' @param x_vector vector of the x-coordinates of the executed trajectory
+#' @param y_vector vector of the y-coordinates of the executed trajectory
+#' @param absolute should negative accelerations (i.e., deceleration) be included?
+#'
+#' @return single number indicating the number of peak acceleration
+#'
+#' @examples
+#'
+#' data("dat_one_trajectory")
+#' indexMaxAcceleration(dat_one_trajectory$xvals, dat_one_trajectory$yvals)
 #'
 #' @export
+#'
 
 indexMaxAcceleration <- function(x_vector, y_vector, absolute = F) {
 

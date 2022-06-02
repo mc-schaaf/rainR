@@ -1,9 +1,23 @@
-#' @title sampEn
+#' @title sampEn2
 #'
 #' @description computes the sample Entropy, as I understood it
 #' comes with ABSOLUTELY NO WARRANTY, not certain whether it is completely correct
 #'
+#' @param timeseries_array array of numbers over which the sampEn is to be computed
+#' @param dimensions number of embedding dimensions for which to compute the sampEn. Sometimes also called "template length"
+#' @param tolerance the tolerance for the comparisons of two number sequences
+#' @param standardise whether to standardize the timeseries_array
+#'
+#' @return returns an array of length "dimensions" with the respective sampEns or a single number, the last element of this array
+#'
+#' @examples
+#'
+#' data("dat_one_trajectory")
+#' sampEn2(dat_one_trajectory$xvals)
+#'
 #' @export
+#' @importFrom stats "sd"
+#'
 
 sampEn2 <- function(timeseries_array,
                     dimensions = 2,

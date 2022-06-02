@@ -1,9 +1,20 @@
 #' @title indexMaxDist
 #'
-#' @description computes the index of the peak velocity of a line,
+#' @description computes the index of the peak velocity of a trajectory,
 #' defined by arrays of x and y coordinates, and assumed to be equidistant in time
 #'
+#' @param x_vector vector of the x-coordinates of the executed trajectory
+#' @param y_vector vector of the y-coordinates of the executed trajectory
+#'
+#' @return single number indicating the index of peak velocity
+#'
+#' @examples
+#'
+#' data("dat_one_trajectory")
+#' indexMaxDist(dat_one_trajectory$xvals, dat_one_trajectory$yvals)
+#'
 #' @export
+#'
 
 indexMaxDist <- function(x_vector, y_vector) {
 
