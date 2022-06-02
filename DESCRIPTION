@@ -1,16 +1,21 @@
 Type: Package
 Package: rainR
 Title: Some utility function for psychological researach
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Bundeles together some functions that I repeatedly use
+    - First focus: Trajectory analysis
+    - Second focus: Data handling (merging, etc.)
+    - Third focus: Wrappers and shorthands for other functions
+    !!! comes with ABSOLUTELY NO WARRANTY and will be refactored continuously. Backwards-compatibility will not be guaranteed. 
+    !!! Therefore, if using for scientific purposes, please be explicit about the version used.
+    Maybe even put the used source bundle to your analysis scripts
 Version: 0.1.0
 Author: Moritz Schaaf
-Maintainer: Nobody <yourself@somewhere.net>
+Maintainer: Nobody <yourself@home.alone>
 Depends:
     R (>= 3.5.0)
 Imports:
     data.table (>= 1.13.6)
-License: What license is it under?
+License: GPL-3
 URL: https://github.com/mc-schaaf/rainR
 BugReports: https://github.com/mc-schaaf/rainR/issues
 Encoding: UTF-8
