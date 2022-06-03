@@ -10,7 +10,8 @@
 #' @param y_start y-coordinate of the start point of the ideal trajectory
 #' @param x_end x-coordinate of the end point of the ideal trajectory
 #' @param y_end y-coordinate of the end point of the ideal trajectory
-#' @param cumulative whether one single number (cumulative=F) or an array of cumulative AUCs should be returned
+#' @param cumulative whether one single number (cumulative=F)
+#' or an array of cumulative AUCs should be returned
 #' @param RP_style should areas that stem from a change of direction be added or subtracted?
 #'
 #' @return AUC as single number or as vector of cumulative MADs
@@ -30,46 +31,46 @@ auc <- function(x_vector,
                 x_end = NULL,
                 y_end = NULL,
                 cumulative = FALSE,
-                RP_style = F) {
+                RP_style = FALSE) {
   # check for optional parameters
   if (is.null(x_start)) {
-    x_start = x_vector[1]
+    x_start <- x_vector[1]
   }
   if (is.null(y_start)) {
-    y_start = y_vector[1]
+    y_start <- y_vector[1]
   }
   if (is.null(x_end)) {
-    x_end = x_vector[length(x_vector)]
+    x_end <- x_vector[length(x_vector)]
   }
   if (is.null(y_end)) {
-    y_end = y_vector[length(x_vector)]
+    y_end <- y_vector[length(x_vector)]
   }
 
   # shift data
-  x_shift = x_vector - x_start
-  y_shift = y_vector - y_start
+  x_shift <- x_vector - x_start
+  y_shift <- y_vector - y_start
 
   # rotate data to ideal trajectory, as defined by start to end points
-  angle = atan2(y_end - y_start, x_end - x_start)
-  sin1 = sin(-angle)
-  cos1 = cos(-angle)
+  angle <- atan2(y_end - y_start, x_end - x_start)
+  sin1 <- sin(-angle)
+  cos1 <- cos(-angle)
 
-  x_rot = x_shift * cos1 - y_shift * sin1
-  y_rot = x_shift * sin1 + y_shift * cos1
+  x_rot <- x_shift * cos1 - y_shift * sin1
+  y_rot <- x_shift * sin1 + y_shift * cos1
 
   # compute differences between (time-) adjacent points
-  d_x = x_rot[2:length(x_rot)] - x_rot[1:(length(x_rot) - 1)]
-  d_y = y_rot[2:length(y_rot)] - y_rot[1:(length(y_rot) - 1)]
+  d_x <- x_rot[2:length(x_rot)] - x_rot[1:(length(x_rot) - 1)]
+  d_y <- y_rot[2:length(y_rot)] - y_rot[1:(length(y_rot) - 1)]
 
   if (RP_style) {
-    d_x = abs(d_x)
+    d_x <- abs(d_x)
   }
 
   # compute square under the curve and triangle under the curve
-  AUC_increment = d_x * y_rot[1:(length(y_rot)) - 1] + d_x * d_y * 0.5
+  AUC_increment <- d_x * y_rot[1:(length(y_rot)) - 1] + d_x * d_y * 0.5
 
   # cumulate over it
-  c_AUC = cumsum(AUC_increment)
+  c_AUC <- cumsum(AUC_increment)
 
   if (cumulative) {
     return(c(0, c_AUC))
