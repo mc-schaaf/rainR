@@ -1,4 +1,4 @@
-#' @title sampEn2
+#' @title sampen2
 #'
 #' @description computes the sample Entropy, as I understood it
 #' comes with ABSOLUTELY NO WARRANTY, not certain whether it is completely correct
@@ -13,49 +13,48 @@
 #' @examples
 #'
 #' data("dat_one_trajectory")
-#' sampEn2(dat_one_trajectory$xvals)
+#' sampen2(dat_one_trajectory$xvals)
 #'
 #' @export
 #' @importFrom stats "sd"
 #'
 
-sampEn2 <- function(timeseries_array,
+sampen2 <- function(timeseries_array,
                     dimensions = 2,
                     tolerance = 0.2 * sd(timeseries_array),
-                    standardise=F) {
-
+                    standardise = F) {
   # input conversion to mirror variable names of RP
   y = timeseries_array
   M = dimensions
   r = tolerance
 
   # possibly: standardisation
-  if(standardise){
+  if (standardise) {
     y = y - mean(y)
-    y = y / (sqrt(mean(y^2)))
+    y = y / (sqrt(mean(y ^ 2)))
   }
 
   N = length(y) - M
   mat_m = 0              # counter for matches of length M
   mat_m1 = 0             # counter for matches of length M+1
 
-  for (i in 1:(N-1)) {
-    for (j in (i+1):N) { # for each possible pair of starting points of a vector of length M+1
+  for (i in 1:(N - 1)) {
+    for (j in (i + 1):N) {
+      # for each possible pair of starting points of a vector of length M+1
       for (k in 0:(M)) {
         # test whether the vector of length M and the vector of length M+1 are within the tolerance
-        if (abs(y[i+k] - y[j+k]) > r) {
+        if (abs(y[i + k] - y[j + k]) > r) {
           break
         }
-        if ((k+1) == M) {
+        if ((k + 1) == M) {
           mat_m = mat_m + 1
         }
-        if ((k+1) > M) {
+        if ((k + 1) > M) {
           mat_m1 = mat_m1 + 1
         }
       }
     }
   }
 
-  return(-log(mat_m1/mat_m))
+  return(-log(mat_m1 / mat_m))
 }
-
