@@ -1,8 +1,9 @@
 #' @title Area Under the Curve
 #'
 #' @description computes the (cumulative) AUC of a point defined by x and y coordinates,
-#' as compared to an ideal trajectory, as defined by the start and end points
-#' importantly, the ideal trajectory is thought of as being of infinite length
+#' as compared to an ideal trajectory, as defined by the start and end points.
+#' Importantly, the ideal trajectory is thought of as being of infinite length.
+#' Work via matrix-rotation.
 #'
 #' @param x_vector vector of the x-coordinates of the executed trajectory
 #' @param y_vector vector of the y-coordinates of the executed trajectory
@@ -14,7 +15,7 @@
 #' or an array of cumulative AUCs should be returned
 #' @param RP_style should areas that stem from a change of direction be added or subtracted?
 #'
-#' @return AUC as single number or as vector of cumulative MADs
+#' @return AUC as single number or as vector of cumulative AUCs
 #'
 #' @examples
 #'

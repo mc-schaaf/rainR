@@ -27,13 +27,14 @@ max_ad(
 \item{y_end}{y-coordinate of the end point of the ideal trajectory}
 }
 \value{
-MAD as single number
+MAD as single number. Can be negative or positive.
 }
 \description{
 computes the maximum absolute deviation of a vector of points
 defined by x and y coordinates,
 as compared to an ideal trajectory, as defined by the start and end points.
-Importantly, the ideal trajectory is thought of as being of infinite length
+Importantly, the ideal trajectory is thought of as being of infinite length.
+Works via matrix-rotation.
 }
 \examples{
 

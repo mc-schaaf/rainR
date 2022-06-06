@@ -1,15 +1,21 @@
-#' @title sampen2
+#' @title SAMPle ENtropy
 #'
-#' @description computes the sample Entropy, as I understood it
-#' comes with ABSOLUTELY NO WARRANTY, not certain whether it is completely correct
+#' @description computes the sample Entropy, as based on a Matlab script of Roland Pfister.
+#' The matlab script can be found at https://osf.io/am6yp/
+#' and the corresponding publications at https://doi.org/10.3758/s13428-020-01409-0
+#' and https://doi.org/10.1016/j.cognition.2014.07.012
 #'
-#' @param timeseries_array array of numbers over which the sampEn is to be computed
-#' @param dimensions number of embedding dimensions for which to compute the sampEn.
+#' @param timeseries_array array of numbers over which the sampen is to be computed
+#' @param dimensions number of embedding dimensions for which to compute the sampen
 #' Sometimes also called "template length"
 #' @param tolerance the tolerance for the comparisons of two number sequences
-#' @param standardise whether to standardize the timeseries_array
+#' @param standardise whether the tolerance is to be understood as absolute
+#' values or as standardized values
+#' @param tidy whether the output of the function should be as in the original
+#' or a single number so it can be applied with tidyverse's "mutate"
 #'
-#' @return a single number, the sample Entropy for the given parameters
+#' @return returns an array of length "dimensions" with the respective
+#' sampEns or a single number, the last element of this array
 #'
 #' @examples
 #'
@@ -17,13 +23,13 @@
 #' sampen2(dat_one_trajectory$xvals)
 #'
 #' @export
-#' @importFrom stats "sd"
 #'
 
 sampen2 <- function(timeseries_array,
-                    dimensions = 2,
-                    tolerance = 0.2 * sd(timeseries_array),
-                    standardise = FALSE) {
+                   dimensions = 5,
+                   tolerance = 0.2,
+                   standardise = TRUE,
+                   tidy = FALSE) {
   # input conversion to mirror variable names of RP
   y <- timeseries_array
   M <- dimensions
@@ -35,27 +41,38 @@ sampen2 <- function(timeseries_array,
     y <- y / (sqrt(mean(y ^ 2)))
   }
 
-  N <- length(y) - M
-  mat_m <- 0              # counter for matches of length M
-  mat_m1 <- 0             # counter for matches of length M+1
+  #  allocate counter variables
+  n <- length(y)
+  lastrun <- rep(0, n)
+  run <- rep(0, n)
+  A <- rep(0, M)
+  B <- rep(0, M + 1)
+  B[1] <- n * (n - 1) / 2
 
-  for (i in 1:(N - 1)) {
-    for (j in (i + 1):N) {
-      # for each possible pair of starting points of a vector of length M+1
-      for (k in 0:(M)) {
-        # test whether the vector of length M and the vector of length M+1 are within the tolerance
-        if (abs(y[i + k] - y[j + k]) > r) {
-          break
-        }
-        if ((k + 1) == M) {
-          mat_m <- mat_m + 1
-        }
-        if ((k + 1) > M) {
-          mat_m1 <- mat_m1 + 1
+  # loop over all possible pairs of numbers
+  for (i in 1:(n - 1)) {
+    for (j in 1:(n - i)) {
+      run[j] <- 0
+      if (abs(y[j + i] - y[i]) < r) {
+        run[j] <- lastrun[j] + 1
+        M1 <- min(c(M, run[j]))
+
+        for (m in 1:M1) {
+          A[m] <- A[m] + 1
+          if ((j + i) < n) {
+            B[m + 1] <- B[m + 1] + 1
+          }
         }
       }
     }
+    lastrun[1:(n - i)] <- run[1:(n - i)]
   }
 
-  return(-log(mat_m1 / mat_m))
+  B <- B[1:(length(B) - 1)]
+  if (!tidy) {
+    return(-log(A / B))
+  } else {
+    return(-log(A[dimensions] / B[dimensions]))
+  }
+
 }

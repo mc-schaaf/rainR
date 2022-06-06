@@ -2,31 +2,39 @@
 % Please edit documentation in R/sampen2.R
 \name{sampen2}
 \alias{sampen2}
-\title{sampen2}
+\title{SAMPle ENtropy}
 \usage{
 sampen2(
   timeseries_array,
-  dimensions = 2,
-  tolerance = 0.2 * sd(timeseries_array),
-  standardise = FALSE
+  dimensions = 5,
+  tolerance = 0.2,
+  standardise = TRUE,
+  tidy = FALSE
 )
 }
 \arguments{
-\item{timeseries_array}{array of numbers over which the sampEn is to be computed}
+\item{timeseries_array}{array of numbers over which the sampen is to be computed}
 
-\item{dimensions}{number of embedding dimensions for which to compute the sampEn.
+\item{dimensions}{number of embedding dimensions for which to compute the sampen
 Sometimes also called "template length"}
 
 \item{tolerance}{the tolerance for the comparisons of two number sequences}
 
-\item{standardise}{whether to standardize the timeseries_array}
+\item{standardise}{whether the tolerance is to be understood as absolute
+values or as standardized values}
+
+\item{tidy}{whether the output of the function should be as in the original
+or a single number so it can be applied with tidyverse's "mutate"}
 }
 \value{
-a single number, the sample Entropy for the given parameters
+returns an array of length "dimensions" with the respective
+sampEns or a single number, the last element of this array
 }
 \description{
-computes the sample Entropy, as I understood it
-comes with ABSOLUTELY NO WARRANTY, not certain whether it is completely correct
+computes the sample Entropy, as based on a Matlab script of Roland Pfister.
+The matlab script can be found at https://osf.io/am6yp/
+and the corresponding publications at https://doi.org/10.3758/s13428-020-01409-0
+and https://doi.org/10.1016/j.cognition.2014.07.012
 }
 \examples{
 

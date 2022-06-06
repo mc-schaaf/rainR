@@ -2,37 +2,31 @@
 % Please edit documentation in R/sampen.R
 \name{sampen}
 \alias{sampen}
-\title{sampen}
+\title{SAMPle ENtropy}
 \usage{
 sampen(
   timeseries_array,
-  dimensions = 5,
-  tolerance = 0.2,
-  standardise = TRUE,
-  tidy = FALSE
+  dimensions = 2,
+  tolerance = 0.2 * sd(timeseries_array),
+  standardise = FALSE
 )
 }
 \arguments{
-\item{timeseries_array}{array of numbers over which the sampen is to be computed}
+\item{timeseries_array}{array of numbers over which the sampEn is to be computed}
 
-\item{dimensions}{number of embedding dimensions for which to compute the sampen
+\item{dimensions}{number of embedding dimensions for which to compute the sampEn.
 Sometimes also called "template length"}
 
 \item{tolerance}{the tolerance for the comparisons of two number sequences}
 
-\item{standardise}{whether the tolerance is to be understood as absolute
-values or as standardized values}
-
-\item{tidy}{whether the output of the function should be RP-style
-or a single number so it can be applied with tidyverse's "mutate"}
+\item{standardise}{whether to standardize the timeseries_array}
 }
 \value{
-returns an array of length "dimensions" with the respective
-sampEns or a single number, the last element of this array
+a single number, the sample entropy for the given parameters
 }
 \description{
-computes the sample Entropy, as based on a Matlab script of Roland Pfister.
-comes with ABSOLUTELY NO WARRANTY, as this is solely a translation!
+computes the sample Entropy, as given by Richman & Moorman (2000),
+which can be found at https://doi.org/10.1152/ajpheart.2000.278.6.H2039
 }
 \examples{
 
