@@ -19,7 +19,7 @@ auc2(x_vector, y_vector, slope, intercept)
 Vector representing the cumulative AUC across course of the trajectory.
 }
 \description{
-% This function computes areas under the curve (AUCs) for
+This function computes areas under the curve (AUCs) for
 trajectory data with the 2D-coordinates px and py and a line, defined by
 slope a and intercept b. The arguments px and py may be scalars or vectors
 of the same length.

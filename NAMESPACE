@@ -2,6 +2,7 @@
 
 export(auc)
 export(auc2)
+export(clear_all_but)
 export(curvature)
 export(index_max_acceleration)
 export(index_max_dist)

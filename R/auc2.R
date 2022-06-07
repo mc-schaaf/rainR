@@ -1,6 +1,6 @@
 #' @title Area Under the Curve
 #'
-#' @description % This function computes areas under the curve (AUCs) for
+#' @description This function computes areas under the curve (AUCs) for
 #' trajectory data with the 2D-coordinates px and py and a line, defined by
 #' slope a and intercept b. The arguments px and py may be scalars or vectors
 #' of the same length.
