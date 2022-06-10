@@ -29,7 +29,7 @@ sampen <- function(timeseries_array,
   M <- dimensions
   r <- tolerance
 
-  # possibly: standardisation
+  # possibly: standardization
   if (standardise) {
     y <- y - mean(y)
     y <- y / (sqrt(mean(y ^ 2)))

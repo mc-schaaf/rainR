@@ -1,15 +1,19 @@
-#' @title merge_files
+#' @title Merges Files of the Same Format
 #'
-#' @description reads in the files supplied and merges the data into one data frame via appending
-#' Hence, files must have the same data format (number and identity of columns)
+#' @description reads in the files supplied and merges the data into one data
+#' frame via appending. Hence, files must have the same data format
+#' (number and identity of columns).
 #'
 #' @param files iterable of paths with names of the to-be-merged files
-#' @param ... additional arguments that will be supplied to the underlying data.table::fread function
+#' @param ... additional arguments that will be supplied to the underlying
+#' \code{\link[data.table]{fread}} function
 #'
-#' @return merged dataset, with the additional information of the files' names and -paths
+#' @return merged dataset, with the additional information of the files'
+#' names and -paths
 #'
 #' @export
 #' @importFrom data.table "fread"
+#'
 
 merge_files <- function(files, ...) {
   for (file in files) {
@@ -26,7 +30,5 @@ merge_files <- function(files, ...) {
       dataset$path <- paste(getwd(), sep = "")
     }
   }
-
   return(dataset)
-
 }

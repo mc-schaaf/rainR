@@ -17,10 +17,13 @@
 #'
 
 point_crosses <- function(numeric_array, relevant_point = 0) {
-  if (length(numeric_array) < 2) {
-    warning("Less than two values supplied!")
-    return(0)
+  if (length(numeric_array) < 3) {
+    if (length(numeric_array) != 0) {
+      warning("Less than three values supplied!")
+    }
+    return(NA)
   }
+
 
   # compute array of booleans indicating if value is greater than relevant_point
   bool_a <- numeric_array > relevant_point

@@ -20,11 +20,12 @@ Vector representing the cumulative AUC across course of the trajectory.
 }
 \description{
 This function computes areas under the curve (AUCs) for
-trajectory data with the 2D-coordinates px and py and a line, defined by
-slope a and intercept b. The arguments px and py may be scalars or vectors
-of the same length.
-Translation of the script given by Pfister et al. (2014) at
-https://doi.org/10.1016/j.cognition.2014.07.012
+trajectory data with the 2D-coordinates x_vector and y_vector and a line,
+defined by a slope and an intercept. The arguments x_vector and y_vector
+may be scalars or vectors of the same length.
+Translation of the script given by
+\href{https://doi.org/10.1016/j.cognition.2014.07.012}{
+Pfister et al. (2014).}
 }
 \details{
 AUCs are computed by dividing the area in triangular and square-shaped

@@ -35,13 +35,13 @@ sampen2 <- function(timeseries_array,
   M <- dimensions
   r <- tolerance
 
-  # possibly: standardisation
+  # possibly: standardization
   if (standardise) {
     y <- y - mean(y)
     y <- y / (sqrt(mean(y ^ 2)))
   }
 
-  #  allocate counter variables
+  # allocate counter variables
   n <- length(y)
   lastrun <- rep(0, n)
   run <- rep(0, n)

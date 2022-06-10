@@ -2,19 +2,22 @@
 % Please edit documentation in R/merge_files.R
 \name{merge_files}
 \alias{merge_files}
-\title{merge_files}
+\title{Merges Files of the Same Format}
 \usage{
 merge_files(files, ...)
 }
 \arguments{
 \item{files}{iterable of paths with names of the to-be-merged files}
 
-\item{...}{additional arguments that will be supplied to the underlying data.table::fread function}
+\item{...}{additional arguments that will be supplied to the underlying
+\code{\link[data.table]{fread}} function}
 }
 \value{
-merged dataset, with the additional information of the files' names and -paths
+merged dataset, with the additional information of the files'
+names and -paths
 }
 \description{
-reads in the files supplied and merges the data into one data frame via appending
-Hence, files must have the same data format (number and identity of columns)
+reads in the files supplied and merges the data into one data
+frame via appending. Hence, files must have the same data format
+(number and identity of columns).
 }

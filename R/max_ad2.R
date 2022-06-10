@@ -1,11 +1,13 @@
 #' @title Maximum Absolute Deviation
 #'
 #' @description This function computes the absolute (Euclidean) distance of a
-#' point P (with the 2D-coordinates px and py) and a line, defined by slope a
-#' and intercept b. The arguments px and py may be scalars or vectors of the
+#' point P (with the 2D-coordinates x_vector and y_vector) and a line,
+#' defined by a slope and an intercept.
+#' The arguments x_vector and y_vector may be scalars or vectors of the
 #' same length.
-#' Translation of the script given by Pfister et al. (2014) at
-#' https://doi.org/10.1016/j.cognition.2014.07.012
+#' Translation of the script given by
+#' \href{https://doi.org/10.1016/j.cognition.2014.07.012}{
+#' Pfister et al. (2014).}
 #'
 #' @param x_vector vector of the x-coordinates of the executed trajectory
 #' @param y_vector vector of the y-coordinates of the executed trajectory
@@ -40,6 +42,7 @@
 #' The x coordinate corresponding to the global minimum is denoted as x0:
 #'
 #'    x0 = (p1 + p2*a - a*b) / (a^2+1)
+#'
 #'
 #' @return List containing 3 vectors. First, ad will be the absolute distances.
 #' Second, direction (1 = above the line, 0 = on the line, -1 = below the line).
