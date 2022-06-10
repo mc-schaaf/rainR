@@ -7,7 +7,8 @@
 #' @param dimensions number of embedding dimensions for which to compute the sampEn.
 #' Sometimes also called "template length"
 #' @param tolerance the tolerance for the comparisons of two number sequences
-#' @param standardise whether to standardize the timeseries_array
+#' @param standardize whether to standardize the timeseries_array
+#' @param use_diff whether to use the differences between adjacent points
 #'
 #' @return a single number, the sample entropy for the given parameters
 #'
@@ -21,18 +22,27 @@
 #'
 
 sampen <- function(timeseries_array,
-                    dimensions = 2,
-                    tolerance = 0.2 * sd(timeseries_array),
-                    standardise = FALSE) {
+                   dimensions = 2,
+                   tolerance = 0.2,
+                   standardize = TRUE,
+                   use_diff = FALSE) {
   # input conversion to mirror variable names of RP
   y <- timeseries_array
   M <- dimensions
   r <- tolerance
 
+  if (use_diff) {
+    if (length(y) <= 2) {
+      warning("Insufficient length of timeseries_array!")
+      return(NA)
+    }
+    y <- y[2:length(y)] - y[1:(length(y) - 1)]
+  }
+
   # possibly: standardization
-  if (standardise) {
+  if (standardize) {
     y <- y - mean(y)
-    y <- y / (sqrt(mean(y ^ 2)))
+    y <- y / sd(y)
   }
 
   N <- length(y) - M

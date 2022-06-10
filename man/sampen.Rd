@@ -7,8 +7,9 @@
 sampen(
   timeseries_array,
   dimensions = 2,
-  tolerance = 0.2 * sd(timeseries_array),
-  standardise = FALSE
+  tolerance = 0.2,
+  standardize = TRUE,
+  use_diff = FALSE
 )
 }
 \arguments{
@@ -19,7 +20,9 @@ Sometimes also called "template length"}
 
 \item{tolerance}{the tolerance for the comparisons of two number sequences}
 
-\item{standardise}{whether to standardize the timeseries_array}
+\item{standardize}{whether to standardize the timeseries_array}
+
+\item{use_diff}{whether to use the differences between adjacent points}
 }
 \value{
 a single number, the sample entropy for the given parameters

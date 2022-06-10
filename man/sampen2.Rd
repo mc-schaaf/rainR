@@ -4,31 +4,22 @@
 \alias{sampen2}
 \title{SAMPle ENtropy}
 \usage{
-sampen2(
-  timeseries_array,
-  dimensions = 5,
-  tolerance = 0.2,
-  standardise = TRUE,
-  tidy = FALSE
-)
+sampen2(timeseries_array, dimensions = 5, tolerance = 0.2, standardize = FALSE)
 }
 \arguments{
-\item{timeseries_array}{array of numbers over which the sampen is to be computed}
+\item{timeseries_array}{input signal vector}
 
-\item{dimensions}{number of embedding dimensions for which to compute the sampen
-Sometimes also called "template length"}
+\item{dimensions}{maximum template length (default M=5).
+Sometimes also called "embedding dimensions"}
 
-\item{tolerance}{the tolerance for the comparisons of two number sequences}
+\item{tolerance}{matching threshold (default r=.2)}
 
-\item{standardise}{whether the tolerance is to be understood as absolute
+\item{standardize}{whether the tolerance is to be understood as absolute
 values or as standardized values}
-
-\item{tidy}{whether the output of the function should be as in the original
-or a single number so it can be applied with tidyverse's "mutate"}
 }
 \value{
-returns an array of length "dimensions" with the respective
-sampEns or a single number, the last element of this array
+returns an array of length "dimensions" with the respective sampEns
+(0,1,..,dimensions-1)
 }
 \description{
 computes the sample Entropy, as based on a Matlab script of Roland Pfister.

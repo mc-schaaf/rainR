@@ -5,17 +5,15 @@
 #' and the corresponding publications at https://doi.org/10.3758/s13428-020-01409-0
 #' and https://doi.org/10.1016/j.cognition.2014.07.012
 #'
-#' @param timeseries_array array of numbers over which the sampen is to be computed
-#' @param dimensions number of embedding dimensions for which to compute the sampen
-#' Sometimes also called "template length"
-#' @param tolerance the tolerance for the comparisons of two number sequences
-#' @param standardise whether the tolerance is to be understood as absolute
+#' @param timeseries_array input signal vector
+#' @param dimensions maximum template length (default M=5).
+#' Sometimes also called "embedding dimensions"
+#' @param tolerance matching threshold (default r=.2)
+#' @param standardize whether the tolerance is to be understood as absolute
 #' values or as standardized values
-#' @param tidy whether the output of the function should be as in the original
-#' or a single number so it can be applied with tidyverse's "mutate"
 #'
-#' @return returns an array of length "dimensions" with the respective
-#' sampEns or a single number, the last element of this array
+#' @return returns an array of length "dimensions" with the respective sampEns
+#' (0,1,..,dimensions-1)
 #'
 #' @examples
 #'
@@ -28,17 +26,16 @@
 sampen2 <- function(timeseries_array,
                    dimensions = 5,
                    tolerance = 0.2,
-                   standardise = TRUE,
-                   tidy = FALSE) {
+                   standardize = FALSE) {
   # input conversion to mirror variable names of RP
   y <- timeseries_array
   M <- dimensions
   r <- tolerance
 
   # possibly: standardization
-  if (standardise) {
+  if (standardize) {
     y <- y - mean(y)
-    y <- y / (sqrt(mean(y ^ 2)))
+    y <- y / sd(y)
   }
 
   # allocate counter variables
@@ -69,10 +66,7 @@ sampen2 <- function(timeseries_array,
   }
 
   B <- B[1:(length(B) - 1)]
-  if (!tidy) {
-    return(-log(A / B))
-  } else {
-    return(-log(A[dimensions] / B[dimensions]))
-  }
+
+  return(-log(A / B))
 
 }
