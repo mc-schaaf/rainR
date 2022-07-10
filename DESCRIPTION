@@ -18,7 +18,8 @@ BugReports: https://github.com/mc-schaaf/rainR/issues
 Depends:
     R (>= 3.5.0)
 Imports:
-    data.table (>= 1.13.6)
+    data.table (>= 1.13.6),
+    schoRsch (>= 1.9.1)
 Encoding: UTF-8
 Language: en-US
 LazyData: true
