@@ -1,22 +1,28 @@
 #' @title SAMPle ENtropy
 #'
-#' @description computes the sample Entropy, as based on a Matlab script of Roland Pfister.
-#' The matlab script can be found at https://osf.io/am6yp/
-#' and the corresponding publications at https://doi.org/10.3758/s13428-020-01409-0
-#' and https://doi.org/10.1016/j.cognition.2014.07.012
+#' @description Computes the sample Entropy, as based on a Matlab script
+#' of Roland Pfister.
 #'
-#' @param timeseries_array input signal vector
-#' @param dimensions maximum template length (default M=5).
-#' Sometimes also called "embedding dimensions"
-#' @param tolerance matching threshold (default r=.2)
-#' @param standardize whether the tolerance is to be understood as absolute
-#' values or as standardized values
+#' @param timeseries_array Input signal vector.
+#' @param dimensions Maximum template length (default M=5).
+#' Sometimes also called "embedding dimensions".
+#' @param tolerance Matching threshold (default r=.2).
+#' @param standardize Whether the tolerance is to be understood as absolute
+#' values or as standardized values.
 #'
-#' @return returns an array of length "dimensions" with the respective sampEns
-#' (0,1,..,dimensions-1)
+#' @return Array of length \code{dimensions} with the respective sampEns
+#' (0,1,..,\code{dimensions}-1).
+#'
+#' @details The matlab script can be found at
+#' \href{https://osf.io/am6yp/}{https://osf.io/am6yp/}.
+#'
+#' @references Wirth, R., Foerster, A., Kunde, W., & Pfister, R. (2020).
+#' Design choices: Empirical recommendations for designing two-dimensional
+#' finger tracking experiments. Behavior Research Methods, 52, 2394 - 2416.
+#' \doi{10.3758/s13428-020-01409-0}
+#'
 #'
 #' @examples
-#'
 #' data("dat_one_trajectory")
 #' sampen2(dat_one_trajectory$xvals)
 #'

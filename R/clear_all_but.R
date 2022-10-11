@@ -1,11 +1,11 @@
-#' @title Clear the Global Workspace
+#' @title Clear the global workspace
 #'
-#' @description Clears the workspace but keeps certain items. If \code{keep} is
-#' not specified, it behaves exactly as the usual
-#' \code{\link[base:rm]{rm(list = ls())}}.
+#' @description Clears the global workspace but keeps certain items.
+#'    If \code{keep} is not specified, it behaves exactly as the usual
+#'    \code{\link[base:rm]{rm(list = ls())}}.
 #'
 #' @param keep Names of the items in the workspace to keep. Must be supplied as
-#' vector of strings.
+#'    vector of strings.
 #'
 #' @examples
 #' ## declare variables

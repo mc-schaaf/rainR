@@ -1,24 +1,31 @@
 #' @title Area Under the Curve
 #'
-#' @description computes the (cumulative) AUC of a point defined by x and y coordinates,
-#' as compared to an ideal trajectory, as defined by the start and end points.
+#' @description Computes the (cumulative) AUC of a point defined by x and y
+#' coordinates, as compared to an ideal trajectory, defined by the
+#' start and end points.
 #' Importantly, the ideal trajectory is thought of as being of infinite length.
-#' Work via matrix-rotation.
+#' Works via matrix-rotation.
 #'
-#' @param x_vector vector of the x-coordinates of the executed trajectory
-#' @param y_vector vector of the y-coordinates of the executed trajectory
+#' @param x_vector Vector of the x-coordinates of the executed trajectory
+#' @param y_vector Vector of the y-coordinates of the executed trajectory
 #' @param x_start x-coordinate of the start point of the ideal trajectory
 #' @param y_start y-coordinate of the start point of the ideal trajectory
 #' @param x_end x-coordinate of the end point of the ideal trajectory
 #' @param y_end y-coordinate of the end point of the ideal trajectory
-#' @param cumulative whether one single number (cumulative=F)
+#' @param cumulative Whether one single number (cumulative=F)
 #' or an array of cumulative AUCs should be returned
-#' @param RP_style should areas that stem from a change of direction be added or subtracted?
+#' @param RP_style Should areas that stem from a change of direction be added
+#' or subtracted?
 #'
-#' @return AUC as single number or as vector of cumulative AUCs
+#' @returns AUC as single number or as vector of cumulative AUCs.
+#'
+#' @references Wirth, R., Foerster, A., Kunde, W., & Pfister, R. (2020).
+#' Design choices: Empirical recommendations for designing two-dimensional
+#' finger tracking experiments. Behavior Research Methods, 52, 2394 - 2416.
+#' \doi{10.3758/s13428-020-01409-0}
+#'
 #'
 #' @examples
-#'
 #' data("dat_one_trajectory")
 #' auc(dat_one_trajectory$xvals, dat_one_trajectory$yvals)
 #'

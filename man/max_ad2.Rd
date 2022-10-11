@@ -7,18 +7,22 @@
 max_ad2(x_vector, y_vector, slope, intercept)
 }
 \arguments{
-\item{x_vector}{vector of the x-coordinates of the executed trajectory}
+\item{x_vector}{Vector of the x-coordinates of the executed trajectory.}
 
-\item{y_vector}{vector of the y-coordinates of the executed trajectory}
+\item{y_vector}{Vector of the y-coordinates of the executed trajectory.}
 
-\item{slope}{slope of the ideal trajectory}
+\item{slope}{Slope of the ideal trajectory.}
 
-\item{intercept}{intercept of the ideal trajectory}
+\item{intercept}{Intercept of the ideal trajectory.}
 }
 \value{
-List containing 3 vectors. First, ad will be the absolute distances.
-Second, direction (1 = above the line, 0 = on the line, -1 = below the line).
-Third, linecoords (list with the vectors x and y for x0 and y0).
+List of length 3 with
+\tabular{ll}{
+ \code{ad}\tab Vector of the absolute distances.\cr
+ \code{direction}\tab Vector of directions (1 = above the line,
+    0 = on the line, -1 = below the line).\cr
+ \code{linecoords}\tab List with the vectors x and y for x0 and y0.
+}
 }
 \description{
 This function computes the absolute (Euclidean) distance of a
@@ -27,10 +31,10 @@ defined by a slope and an intercept.
 The arguments x_vector and y_vector may be scalars or vectors of the
 same length.
 Translation of the script given by
-\href{https://doi.org/10.1016/j.cognition.2014.07.012}{
-Pfister et al. (2014).}
+Pfister et al. (2014) <\doi{10.1016/j.cognition.2014.07.012}>.
 }
 \details{
+\preformatted{
 The Euclidean distance d between P and the line defined by a and b can
 be computed as a function of the x coordinate of a point G(x,y) on the
 line (general case). To avoid confusion, I will denote px and py as p1
@@ -58,4 +62,11 @@ and p2, respectively.
 The x coordinate corresponding to the global minimum is denoted as x0:
 
    x0 = (p1 + p2*a - a*b) / (a^2+1)
+}
+}
+\references{
+Wirth, R., Foerster, A., Kunde, W., & Pfister, R. (2020).
+Design choices: Empirical recommendations for designing two-dimensional
+finger tracking experiments. Behavior Research Methods, 52, 2394 - 2416.
+\doi{10.3758/s13428-020-01409-0}
 }

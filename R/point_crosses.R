@@ -1,15 +1,21 @@
-#' @title point_crosses
+#' @title Number of times a point is crossed
 #'
-#' @description checks how often a certain point is being crossed by an number sequence
-#' where the order of the array indicates timeadjacency
+#' @description Checks how often a certain point is being crossed by an number
+#' sequence where the order of the array indicates timeadjacency.
 #'
-#' @param numeric_array array of numbers ordered by their time of appearance
-#' @param relevant_point number which has to be crossed
+#' @param numeric_array Array of numbers ordered by their time of appearance.
+#' @param relevant_point Number which has to be crossed.
 #'
-#' @return number of times that numeric_array crosses the relevant_point
+#' @returns Number of times that \code{numeric_array} crosses
+#' the \code{relevant_point}.
+#'
+#' @references Wirth, R., Foerster, A., Kunde, W., & Pfister, R. (2020).
+#' Design choices: Empirical recommendations for designing two-dimensional
+#' finger tracking experiments. Behavior Research Methods, 52, 2394 - 2416.
+#' \doi{10.3758/s13428-020-01409-0}
+#'
 #'
 #' @examples
-#'
 #' data("dat_one_trajectory")
 #' point_crosses(dat_one_trajectory$xvals)
 #'

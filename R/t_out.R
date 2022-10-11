@@ -32,7 +32,8 @@
 #'
 #' @details The output of a call to \code{t_out} is formatted according to the
 #' guidelines of the APA (American Psychological Association) as well as the
-#' DGPs ("Deutsche Gesellschaft fuer Psychologie"; German Psychological Society).
+#' DGPs ("Deutsche Gesellschaft fuer Psychologie";
+#' German Psychological Society).
 #'
 #' @export
 #' @importFrom schoRsch "t_out"
@@ -68,11 +69,11 @@ t_out <- function(toutput,
       print = TRUE
     )
   )
-  note = schorsch_string[grep("NOTE:", schorsch_string)]
+  note <- schorsch_string[grep("NOTE:", schorsch_string)]
 
   # add the absolute difference to the output
   if (!is.null(abs.diff)) {
-    schorsch_out$Results = paste0(schorsch_out$Results,
+    schorsch_out$Results <- paste0(schorsch_out$Results,
                                   ", delta = ",
                                   round(toutput$estimate, abs.diff))
   }

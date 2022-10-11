@@ -1,22 +1,26 @@
 #' @title Area Under the Curve
 #'
-#' @description This function computes areas under the curve (AUCs) for
+#' @description Computes areas under the curve (AUCs) for
 #' trajectory data with the 2D-coordinates x_vector and y_vector and a line,
 #' defined by a slope and an intercept. The arguments x_vector and y_vector
 #' may be scalars or vectors of the same length.
 #' Translation of the script given by
-#' \href{https://doi.org/10.1016/j.cognition.2014.07.012}{
-#' Pfister et al. (2014).}
+#' Pfister et al. (2014) <\doi{10.1016/j.cognition.2014.07.012}>.
 #'
-#' @param x_vector vector of the x-coordinates of the executed trajectory
-#' @param y_vector vector of the y-coordinates of the executed trajectory
-#' @param slope slope of the ideal trajectory
-#' @param intercept intercept of the ideal trajectory
+#' @param x_vector Vector of the x-coordinates of the executed trajectory.
+#' @param y_vector Vector of the y-coordinates of the executed trajectory.
+#' @param slope Slope of the ideal trajectory.
+#' @param intercept Intercept of the ideal trajectory.
 #'
-#' @details AUCs are computed by dividing the area in triangular and square-shaped
-#' pieces and adding the up across the trajectory.
+#' @details AUCs are computed by dividing the area in triangular and
+#' square-shaped pieces and adding the up across the trajectory.
 #'
-#' @return Vector representing the cumulative AUC across course of the trajectory.
+#' @returns Vector with the cumulative AUC across course of the trajectory.
+#'
+#' @references Wirth, R., Foerster, A., Kunde, W., & Pfister, R. (2020).
+#' Design choices: Empirical recommendations for designing two-dimensional
+#' finger tracking experiments. Behavior Research Methods, 52, 2394 - 2416.
+#' \doi{10.3758/s13428-020-01409-0}
 #'
 #' @export
 #'

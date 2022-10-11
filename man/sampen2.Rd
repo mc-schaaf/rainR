@@ -7,29 +7,36 @@
 sampen2(timeseries_array, dimensions = 5, tolerance = 0.2, standardize = FALSE)
 }
 \arguments{
-\item{timeseries_array}{input signal vector}
+\item{timeseries_array}{Input signal vector.}
 
-\item{dimensions}{maximum template length (default M=5).
-Sometimes also called "embedding dimensions"}
+\item{dimensions}{Maximum template length (default M=5).
+Sometimes also called "embedding dimensions".}
 
-\item{tolerance}{matching threshold (default r=.2)}
+\item{tolerance}{Matching threshold (default r=.2).}
 
-\item{standardize}{whether the tolerance is to be understood as absolute
-values or as standardized values}
+\item{standardize}{Whether the tolerance is to be understood as absolute
+values or as standardized values.}
 }
 \value{
-returns an array of length "dimensions" with the respective sampEns
-(0,1,..,dimensions-1)
+Array of length \code{dimensions} with the respective sampEns
+(0,1,..,\code{dimensions}-1).
 }
 \description{
-computes the sample Entropy, as based on a Matlab script of Roland Pfister.
-The matlab script can be found at https://osf.io/am6yp/
-and the corresponding publications at https://doi.org/10.3758/s13428-020-01409-0
-and https://doi.org/10.1016/j.cognition.2014.07.012
+Computes the sample Entropy, as based on a Matlab script
+of Roland Pfister.
+}
+\details{
+The matlab script can be found at
+\href{https://osf.io/am6yp/}{https://osf.io/am6yp/}.
 }
 \examples{
-
 data("dat_one_trajectory")
 sampen2(dat_one_trajectory$xvals)
 
+}
+\references{
+Wirth, R., Foerster, A., Kunde, W., & Pfister, R. (2020).
+Design choices: Empirical recommendations for designing two-dimensional
+finger tracking experiments. Behavior Research Methods, 52, 2394 - 2416.
+\doi{10.3758/s13428-020-01409-0}
 }

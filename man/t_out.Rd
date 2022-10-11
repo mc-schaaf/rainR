@@ -56,5 +56,6 @@ Distilles the most relevant data from an output object of
 \details{
 The output of a call to \code{t_out} is formatted according to the
 guidelines of the APA (American Psychological Association) as well as the
-DGPs ("Deutsche Gesellschaft fuer Psychologie"; German Psychological Society).
+DGPs ("Deutsche Gesellschaft fuer Psychologie";
+German Psychological Society).
 }

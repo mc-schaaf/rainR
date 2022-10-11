@@ -14,31 +14,36 @@ max_ad(
 )
 }
 \arguments{
-\item{x_vector}{vector of the x-coordinates of the executed trajectory}
+\item{x_vector}{Vector of the x-coordinates of the executed trajectory.}
 
-\item{y_vector}{vector of the y-coordinates of the executed trajectory}
+\item{y_vector}{Vector of the y-coordinates of the executed trajectory.}
 
-\item{x_start}{x-coordinate of the start point of the ideal trajectory}
+\item{x_start}{x-coordinate of the start point of the ideal trajectory.}
 
-\item{y_start}{y-coordinate of the start point of the ideal trajectory}
+\item{y_start}{y-coordinate of the start point of the ideal trajectory.}
 
-\item{x_end}{x-coordinate of the end point of the ideal trajectory}
+\item{x_end}{x-coordinate of the end point of the ideal trajectory.}
 
-\item{y_end}{y-coordinate of the end point of the ideal trajectory}
+\item{y_end}{y-coordinate of the end point of the ideal trajectory.}
 }
 \value{
 MAD as single number. Can be negative or positive.
 }
 \description{
-computes the maximum absolute deviation of a vector of points
+Computes the maximum absolute deviation of a vector of points
 defined by x and y coordinates,
-as compared to an ideal trajectory, as defined by the start and end points.
+as compared to an ideal trajectory, defined by the start and end points.
 Importantly, the ideal trajectory is thought of as being of infinite length.
 Works via matrix-rotation.
 }
 \examples{
-
 data("dat_one_trajectory")
 max_ad(dat_one_trajectory$xvals, dat_one_trajectory$yvals)
 
+}
+\references{
+Wirth, R., Foerster, A., Kunde, W., & Pfister, R. (2020).
+Design choices: Empirical recommendations for designing two-dimensional
+finger tracking experiments. Behavior Research Methods, 52, 2394 - 2416.
+\doi{10.3758/s13428-020-01409-0}
 }

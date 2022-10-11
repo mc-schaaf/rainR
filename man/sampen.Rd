@@ -13,27 +13,33 @@ sampen(
 )
 }
 \arguments{
-\item{timeseries_array}{array of numbers over which the sampEn is to be computed}
+\item{timeseries_array}{Array of numbers over which the sampEn is to be
+computed.}
 
-\item{dimensions}{number of embedding dimensions for which to compute the sampEn.
-Sometimes also called "template length"}
+\item{dimensions}{Number of embedding dimensions for which to compute the
+sampEn. Sometimes also called "template length".}
 
-\item{tolerance}{the tolerance for the comparisons of two number sequences}
+\item{tolerance}{Tolerance for the comparisons of two number sequences.}
 
-\item{standardize}{whether to standardize the timeseries_array}
+\item{standardize}{Whether to standardize the timeseries_array.}
 
-\item{use_diff}{whether to use the differences between adjacent points}
+\item{use_diff}{Whether to use the differences between adjacent points.}
 }
 \value{
-a single number, the sample entropy for the given parameters
+Single number indicating the sample entropy for the given parameters.
 }
 \description{
-computes the sample Entropy, as given by Richman & Moorman (2000),
-which can be found at https://doi.org/10.1152/ajpheart.2000.278.6.H2039
+Computes the sample Entropy, as given by
+Richman & Moorman (2000) <\doi{10.1152/ajpheart.2000.278.6.H2039}>.
 }
 \examples{
-
 data("dat_one_trajectory")
 sampen(dat_one_trajectory$xvals)
 
+}
+\references{
+Wirth, R., Foerster, A., Kunde, W., & Pfister, R. (2020).
+Design choices: Empirical recommendations for designing two-dimensional
+finger tracking experiments. Behavior Research Methods, 52, 2394 - 2416.
+\doi{10.3758/s13428-020-01409-0}
 }

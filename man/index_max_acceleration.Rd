@@ -2,27 +2,34 @@
 % Please edit documentation in R/index_max_acceleration.R
 \name{index_max_acceleration}
 \alias{index_max_acceleration}
-\title{index_max_acceleration}
+\title{Time-point of maximum acceleration}
 \usage{
 index_max_acceleration(x_vector, y_vector, absolute = FALSE)
 }
 \arguments{
-\item{x_vector}{vector of the x-coordinates of the executed trajectory}
+\item{x_vector}{Vector of the x-coordinates of the executed trajectory.}
 
-\item{y_vector}{vector of the y-coordinates of the executed trajectory}
+\item{y_vector}{Vector of the y-coordinates of the executed trajectory.}
 
-\item{absolute}{should negative accelerations (i.e., deceleration) be included?}
+\item{absolute}{Should negative accelerations (i.e., deceleration)
+be included?}
 }
 \value{
-single number indicating the number of peak acceleration
+Single number indicating the index of peak acceleration.
 }
 \description{
-computes the index of the peak acceleration of a trajectory,
-defined by arrays of x and y coordinates, and assumed to be equidistant in time
+Computes the index of the peak acceleration of a trajectory,
+defined by arrays of x and y coordinates, and assumed to be equidistant
+in time.
 }
 \examples{
-
 data("dat_one_trajectory")
 index_max_acceleration(dat_one_trajectory$xvals, dat_one_trajectory$yvals)
 
+}
+\references{
+Wirth, R., Foerster, A., Kunde, W., & Pfister, R. (2020).
+Design choices: Empirical recommendations for designing two-dimensional
+finger tracking experiments. Behavior Research Methods, 52, 2394 - 2416.
+\doi{10.3758/s13428-020-01409-0}
 }

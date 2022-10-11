@@ -2,11 +2,13 @@ Type: Package
 Package: rainR
 Title: Really Awesome and Interesting New R-Package
 Version: 0.1.0
-Authors@R: 
-    person("Moritz", "Schaaf", , "moritz.schaaf@uni-wuerzburg.de", role = c("aut", "cre"))
+Authors@R: c(
+    person("Moritz", "Schaaf", , "moritz.schaaf@uni-wuerzburg.de", role = c("aut", "cre")),
+    person("Roland", "Pfister", , "roland.pfister@psychologie.uni-wuerzburg.de", role = "aut")
+  )
 Description: Bundles together some functions that I repeatedly use.  One
     focus is trajectory analysis, another focus is data handling (merging,
-    etc.)l, and the third is wrappers and shorthand calls for other
+    etc.), and the third is wrappers and shorthand calls for other
     functions.  It comes with ABSOLUTELY NO WARRANTY and will be
     refactored continuously.  Backwards-compatibility will not be
     guaranteed.  Therefore, if using for scientific purposes, please be

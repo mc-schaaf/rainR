@@ -2,7 +2,7 @@
 % Please edit documentation in R/clear_all_but.R
 \name{clear_all_but}
 \alias{clear_all_but}
-\title{Clear the Global Workspace}
+\title{Clear the global workspace}
 \usage{
 clear_all_but(keep = NULL)
 }
@@ -11,9 +11,9 @@ clear_all_but(keep = NULL)
 vector of strings.}
 }
 \description{
-Clears the workspace but keeps certain items. If \code{keep} is
-not specified, it behaves exactly as the usual
-\code{\link[base:rm]{rm(list = ls())}}.
+Clears the global workspace but keeps certain items.
+   If \code{keep} is not specified, it behaves exactly as the usual
+   \code{\link[base:rm]{rm(list = ls())}}.
 }
 \examples{
 ## declare variables
