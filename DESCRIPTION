@@ -2,19 +2,21 @@ Type: Package
 Package: rainR
 Title: Really Awesome and Interesting New R-Package
 Version: 0.1.0
+Date: 2022-10-12
 Authors@R: c(
-    person("Moritz", "Schaaf", , "moritz.schaaf@uni-wuerzburg.de", role = c("aut", "cre")),
-    person("Roland", "Pfister", , "roland.pfister@psychologie.uni-wuerzburg.de", role = "aut")
+    person("Moritz", "Schaaf", role = c("aut", "cre"), 
+    email = "moritz.schaaf@uni-wuerzburg.de")
   )
+Author: Moritz Schaaf [aut, cre], Robert Wirth [aut], Roland Pfister [aut]
+Maintainer: Moritz Schaaf <moritz.schaaf@uni-wuerzburg.de>
 Description: Bundles together some functions that I repeatedly use.  One
-    focus is trajectory analysis, another focus is data handling (merging,
-    etc.), and the third is wrappers and shorthand calls for other
+    focus is data handling (merging, etc.), and the other iswrappers and 
+    shorthand calls for other
     functions.  It comes with ABSOLUTELY NO WARRANTY and will be
     refactored continuously.  Backwards-compatibility will not be
     guaranteed.  Therefore, if using for scientific purposes, please be
     explicit about the version used.  Maybe even put the used source
     bundle to your analysis scripts.
-License: GPL-3
 URL: https://github.com/mc-schaaf/rainR
 BugReports: https://github.com/mc-schaaf/rainR/issues
 Depends:
@@ -22,7 +24,8 @@ Depends:
 Imports:
     data.table (>= 1.13.6),
     schoRsch (>= 1.9.1)
-Encoding: UTF-8
 Language: en-US
+License: GPL-3
 LazyData: true
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
+Encoding: UTF-8
