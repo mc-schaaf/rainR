@@ -7,7 +7,7 @@ Authors@R: c(
     person("Moritz", "Schaaf", role = c("aut", "cre"), 
     email = "moritz.schaaf@uni-wuerzburg.de")
   )
-Author: Moritz Schaaf [aut, cre], Robert Wirth [aut], Roland Pfister [aut]
+Author: Moritz Schaaf [aut, cre]
 Maintainer: Moritz Schaaf <moritz.schaaf@uni-wuerzburg.de>
 Description: Bundles together some functions that I repeatedly use.  One
     focus is data handling (merging, etc.), and the other iswrappers and 
