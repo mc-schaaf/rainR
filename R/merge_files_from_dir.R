@@ -49,6 +49,8 @@ merge_files_from_dir <- function(regex_exp,
       no.. = TRUE
     )
 
+    file_list <- paste0(dir_path, "\\", file_list)
+
     if (!(debug %in% c("no","return.names","print.bad.files"))) {
       warning("debug parameter is wrong. Must be one of \"no\", \"return.names\", or \"print.bad.files\".")
     }
