@@ -2,6 +2,8 @@
 
 export(merge_files)
 export(merge_files_from_dir)
+export(pairwise_paired_t_test)
+export(pairwise_paired_t_test_grouped)
 export(t_out)
 importFrom(data.table,"fread")
 importFrom(schoRsch,"t_out")

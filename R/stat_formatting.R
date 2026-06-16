@@ -9,7 +9,7 @@
 #' @return A character vector containing significance codes.
 #'
 #' @keywords internal
-p_stars <- function(p, nonsig = "") {
+format_p_stars <- function(p, nonsig = "") {
 
   if (!is.character(nonsig) || length(nonsig) != 1L || is.na(nonsig)) {
     stop("`nonsig` must be a single character string.", call. = FALSE)

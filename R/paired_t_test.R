@@ -48,6 +48,10 @@ pairwise_paired_t_test <- function(data, dv, within, id, warn = TRUE, ...) {
   within <- rlang::ensym(within)
   id     <- rlang::ensym(id)
 
+  within_col <- rlang::as_string(within)
+  id_col <- rlang::as_string(id)
+
+
   ## input validation
   if (!is.data.frame(data)) {
     stop("`data` must be a data frame.", call. = FALSE)
@@ -62,20 +66,17 @@ pairwise_paired_t_test <- function(data, dv, within, id, warn = TRUE, ...) {
     rlang::as_string(within),
     rlang::as_string(id)
   )
-
   missing_cols <- setdiff(required_cols, names(data))
-
   if (length(missing_cols) > 0) {
     stop(paste0("Missing column(s): ",paste(missing_cols,collapse = ", ")), call. = FALSE)
   }
 
-  duplicates <- data |>
-    dplyr::count(!!id, !!within) |>
-    dplyr::filter(n > 1)
 
-  if (nrow(duplicates) > 0) {
+  tab <- table(data[[id_col]], data[[within_col]])
+  if (any(tab > 1)) {
     stop("Each id-within combination must occur only once.", call. = FALSE)
   }
+
 
   within_levels <- data |>
     dplyr::pull(!!within) |>
@@ -87,7 +88,7 @@ pairwise_paired_t_test <- function(data, dv, within, id, warn = TRUE, ...) {
 
 
   ## actual computation
-  all_comparisons <- combn(within_levels, 2, simplify = FALSE)
+  all_comparisons <- utils::combn(within_levels, 2, simplify = FALSE)
 
   results <- vector(mode = "list",length = length(all_comparisons))
 
@@ -95,18 +96,17 @@ pairwise_paired_t_test <- function(data, dv, within, id, warn = TRUE, ...) {
 
     comparison <- all_comparisons[[i]]
 
-    d1 <- data |> dplyr::filter(!!within == comparison[1])
-    d2 <- data |> dplyr::filter(!!within == comparison[2])
+    d1 <- data[data[[within_col]] == comparison[1], , drop = FALSE]
+    d2 <- data[data[[within_col]] == comparison[2], , drop = FALSE]
 
     merged <- dplyr::inner_join(
-      d1 |> dplyr::select(!!id, val1 = !!dv),
-      d2 |> dplyr::select(!!id, val2 = !!dv),
-      by = rlang::as_string(id)
+      d1[, c(id_col, rlang::as_string(dv))],
+      d2[, c(id_col, rlang::as_string(dv))],
+      by = id_col,
+      suffix = c("_1", "_2")
     )
 
-    n_pairs <- nrow(merged)
-
-    if (n_pairs < 2) {
+    if (nrow(merged) < 2) {
       if (warn) {
         warning(
           paste0("Skipping comparison ", comparison[1]," vs ",comparison[2],
@@ -117,46 +117,94 @@ pairwise_paired_t_test <- function(data, dv, within, id, warn = TRUE, ...) {
       next
     }
 
-    dropped1 <- nrow(d1) - n_pairs
-    dropped2 <- nrow(d2) - n_pairs
-
-    if (warn && (dropped1 > 0 || dropped2 > 0)) {
-      warning(paste0("Comparison ", comparison[1], " vs ", comparison[2], ": removed ",
-                     dropped1, " observation(s) from group 1 and ", dropped2,
+    if (warn && (nrow(d1) - nrow(merged) > 0 || nrow(d2) - nrow(merged) > 0)) {
+      warning(paste0("Comparison ", comparison[1], " vs ", comparison[2],
+                     ": removed ", nrow(d1) - nrow(merged),
+                     " observation(s) from group 1 and ", nrow(d2) - nrow(merged),
                      " observation(s) from group 2 because complete pairs were required."),
               call. = FALSE
       )
     }
 
-    merged$diff <- merged$val1 - merged$val2
+    val1 <- merged[[paste0(rlang::as_string(dv), "_1")]]
+    val2 <- merged[[paste0(rlang::as_string(dv), "_2")]]
+    diff <- val1 - val2
 
-    t_test <- stats::t.test(merged$val1, merged$val2, paired = TRUE, ...)
+    t_test <- stats::t.test(val1, val2, paired = TRUE, ...)
 
     # append to results list
     results[[i]] <- tibble::tibble(
       group1  = as.character(comparison[1]),
       group2  = as.character(comparison[2]),
-      n       = n_pairs,
-      mean1   = mean(merged$val1, na.rm=TRUE),
-      mean2   = mean(merged$val2, na.rm=TRUE),
-      diff    = mean(merged$diff, na.rm=TRUE),
-      se_pd   = sd(merged$diff, na.rm=TRUE) / sqrt(n_pairs),
+      n       = nrow(merged),
+      mean1   = mean(val1, na.rm=TRUE),
+      mean2   = mean(val2, na.rm=TRUE),
+      diff    = mean(diff, na.rm=TRUE),
+      se_pd   = stats::sd(diff, na.rm=TRUE) / sqrt(nrow(merged)),
       ci_low  = unname(t_test$conf.int[1]),
       ci_high = unname(t_test$conf.int[2]),
       df      = unname(t_test$parameter),
       t       = unname(t_test$statistic),
       p       = t_test$p.value,
-      dz      = unname(t_test$statistic) / sqrt(n_pairs)
+      dz      = unname(t_test$statistic) / sqrt(nrow(merged))
     )
   }
 
-  # convert list to single data.frame
-  results <- dplyr::bind_rows(results)
-
-  results <- results |>
-    dplyr::mutate(
-      p_str = p_stars(p)
-    )
-
-  return(results)
+  # convert list to single data.frame and return
+  return(dplyr::bind_rows(results))
 }
+
+
+
+
+
+
+
+
+#' Grouped pairwise paired-samples t-tests
+#'
+#' Runs \code{pairwise_paired_t_test()} within groups defined by one or more variables.
+#'
+#' @inheritParams pairwise_paired_t_test
+#' @param by Grouping variables (tidy-evaluated; supports multiple columns).
+#'
+#' @return A tibble with results split by grouping variables.
+#'
+#' @export
+pairwise_paired_t_test_grouped <- function(data, dv, within, id, by, warn = TRUE, ...) {
+
+  ## capture columns for later tidyverse style injection
+  dv     <- rlang::ensym(dv)
+  within <- rlang::ensym(within)
+  id     <- rlang::ensym(id)
+  by     <- rlang::enquos(by)
+
+  ## input validation
+  if (length(by) == 0) {
+    stop("`by` must specify at least one grouping variable.", call. = FALSE)
+  }
+
+  missing_by <- setdiff(vapply(by, rlang::as_name, character(1)), names(data))
+
+  if (length(missing_by) > 0) {
+    stop(paste0("Grouping variable(s) not found in data: ", paste(missing_by, collapse = ", ")), call. = FALSE)
+  }
+
+  ## grouped computation
+  dplyr::group_by(data, !!!by) |>
+    dplyr::group_modify(function(.x, .y) {
+      res <- pairwise_paired_t_test(
+        data   = .x,
+        dv     = !!dv,
+        within = !!within,
+        id     = !!id,
+        warn   = warn,
+        ...
+      )
+      # attach grouping columns
+      return(dplyr::bind_cols(dplyr::as_tibble(.y), res))
+    }) |>
+    dplyr::ungroup()
+}
+
+

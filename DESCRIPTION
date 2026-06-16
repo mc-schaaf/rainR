@@ -23,9 +23,14 @@ Depends:
     R (>= 3.5.0)
 Imports:
     data.table (>= 1.13.6),
-    schoRsch (>= 1.9.1)
+    dplyr,
+    rlang,
+    schoRsch (>= 1.9.1),
+    stats,
+    tibble,
+    utils
 Language: en-US
 License: GPL-3
 LazyData: true
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 Encoding: UTF-8
