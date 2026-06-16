@@ -128,7 +128,7 @@ pairwise_paired_t_test <- function(data, dv, within, id, warn = TRUE, ...) {
 
     val1 <- merged[[paste0(rlang::as_string(dv), "_1")]]
     val2 <- merged[[paste0(rlang::as_string(dv), "_2")]]
-    diff <- val1 - val2
+    diffs <- val1 - val2
 
     t_test <- stats::t.test(val1, val2, paired = TRUE, ...)
 
@@ -139,8 +139,8 @@ pairwise_paired_t_test <- function(data, dv, within, id, warn = TRUE, ...) {
       n       = nrow(merged),
       mean1   = mean(val1, na.rm=TRUE),
       mean2   = mean(val2, na.rm=TRUE),
-      diff    = mean(diff, na.rm=TRUE),
-      se_pd   = stats::sd(diff, na.rm=TRUE) / sqrt(nrow(merged)),
+      diff    = mean(diffs, na.rm=TRUE),
+      se_pd   = stats::sd(diffs, na.rm=TRUE) / sqrt(nrow(merged)),
       ci_low  = unname(t_test$conf.int[1]),
       ci_high = unname(t_test$conf.int[2]),
       df      = unname(t_test$parameter),
@@ -190,19 +190,20 @@ pairwise_paired_t_test_grouped <- function(data, dv, within, id, by, warn = TRUE
     stop(paste0("Grouping variable(s) not found in data: ", paste(missing_by, collapse = ", ")), call. = FALSE)
   }
 
+
   ## grouped computation
-  dplyr::group_by(data, !!!by) |>
+  dplyr::group_by(data,!!!by) |>
     dplyr::group_modify(function(.x, .y) {
-      res <- pairwise_paired_t_test(
-        data   = .x,
-        dv     = !!dv,
-        within = !!within,
-        id     = !!id,
-        warn   = warn,
-        ...
+      return(
+        pairwise_paired_t_test(
+          data   = .x,
+          dv     = !!dv,
+          within = !!within,
+          id     = !!id,
+          warn   = warn,
+          ...
+        )
       )
-      # attach grouping columns
-      return(dplyr::bind_cols(dplyr::as_tibble(.y), res))
     }) |>
     dplyr::ungroup()
 }
