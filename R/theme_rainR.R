@@ -314,14 +314,22 @@ set_theme_rainR <- function(...) {
 
 
 
-
+#' @importFrom rlang .data
 #' @keywords internal
+
+
 .theme_smoke_test <- function() {
-  ggplot2::ggplot(mtcars, ggplot2::aes(wt, mpg,
-                                       colour = factor(cyl),
-                                       shape = factor(gear))) +
+  ggplot2::ggplot(
+    datasets::mtcars,
+    ggplot2::aes(
+      .data$wt,
+      .data$mpg,
+      colour = factor(.data$cyl),
+      shape = factor(.data$gear)
+    )
+  ) +
     ggplot2::geom_point(size = 2.5) +
-    ggplot2::facet_grid(. ~ am) +
+    ggplot2::facet_grid(. ~ .data$am) +
     ggplot2::labs(
       title = "Fuel economy vs weight",
       subtitle = "Testing facets, legends, and strip styling",

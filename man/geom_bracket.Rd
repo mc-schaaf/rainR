@@ -2,7 +2,7 @@
 % Please edit documentation in R/geom-bracket.R
 \name{geom_bracket}
 \alias{geom_bracket}
-\title{Bracket geom for ggplot2}
+\title{Bracket annotations between two points}
 \usage{
 geom_bracket(
   mapping = NULL,
@@ -12,43 +12,59 @@ geom_bracket(
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE,
-  tipheight = 2,
   ...
 )
 }
 \arguments{
-\item{mapping}{Set of aesthetic mappings created by \code{aes()}.}
+\item{mapping, data, stat, position, show.legend, inherit.aes}{Passed to [ggplot2::layer()].}
 
-\item{data}{The data to be displayed in this layer.}
+\item{na.rm}{Logical. If `FALSE` (default), missing values are removed with
+a warning. If `TRUE`, missing values are silently removed.}
 
-\item{stat}{The statistical transformation to use.}
-
-\item{position}{Position adjustment.}
-
-\item{na.rm}{If \code{FALSE}, missing values are removed with a warning.}
-
-\item{show.legend}{Logical. Should this layer be included in legends?}
-
-\item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics.}
-
-\item{tipheight}{Height of bracket tips in millimetres.}
-
-\item{...}{Additional arguments passed to \code{layer()}.}
+\item{...}{Additional parameters passed on to the layer, including
+aesthetics such as `tipheight`, `linewidth`, `colour`, `alpha`,
+`lineend`, and `linejoin`.}
 }
 \value{
 A ggplot2 layer.
 }
 \description{
-Draws bracket-style annotations between two points in Cartesian space.
-Supports horizontal, vertical, and diagonal brackets via (x, y) to (xend, yend).
+Draw bracket-style annotations defined by start and end points. Unlike
+many annotation geoms that assume horizontal orientation, brackets are
+constructed from arbitrary line segments and therefore support horizontal,
+vertical, diagonal, and mixed-direction brackets.
 }
 \details{
-If only one of \code{xend} or \code{yend} is supplied, the missing
-coordinate is inferred from the start point.
-The geom only supports linear coordinate systems. Non-linear
-coordinates (e.g. polar) will produce a warning and may not
-render correctly.
+Bracket tips are controlled via the `tipheight` aesthetic, which specifies
+the tip length in millimetres. Because tip heights are measured in physical
+units rather than data units, they remain visually constant regardless of
+axis scaling, aspect ratio, or coordinate transformations.
+
+Endpoints are specified via `x`, `y`, `xend`, and `yend`. If either
+`xend` or `yend` is omitted, it is inferred from the corresponding start
+coordinate, allowing purely horizontal or purely vertical brackets to be
+specified concisely.
 }
+\section{Aesthetics}{
+
+
+`geom_bracket()` understands the following aesthetics:
+
+- `x`
+- `y`
+- `xend`
+- `yend`
+- `tipheight` (tip length in millimetres)
+- `colour`
+- `linewidth`
+- `alpha`
+- `lineend`
+- `linejoin`
+
+`x` and `y` are required. At least one of `xend` or `yend` must be
+supplied.
+}
+
 \examples{
 library(ggplot2)
 
@@ -93,5 +109,5 @@ ggplot(df2, aes(x = x, xend = xend, y = y, yend = yend)) +
     colour = "black",
     linewidth = 1
   )
-  
+
 }
