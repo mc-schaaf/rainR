@@ -61,6 +61,10 @@ pairwise_paired_t_test <- function(data, dv, within, id, warn = TRUE, ...) {
     stop("`warn` must be TRUE or FALSE.", call. = FALSE)
   }
 
+  if (missing(dv) || missing(within) || missing(id)) {
+    stop("You must supply `dv`, `within`, and `id`.", call. = FALSE)
+  }
+
   required_cols <- c(
     rlang::as_string(dv),
     rlang::as_string(within),
@@ -192,7 +196,7 @@ pairwise_paired_t_test_grouped <- function(data, dv, within, id, by, warn = TRUE
 
 
   ## grouped computation
-  dplyr::group_by(data,!!!by) |>
+  dplyr::group_by(data, !!!by) |>
     dplyr::group_modify(function(.x, .y) {
       return(
         pairwise_paired_t_test(

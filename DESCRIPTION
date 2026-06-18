@@ -29,7 +29,8 @@ Imports:
     ggplot2 (>= 4.0.0),
     stats,
     tibble,
-    utils
+    utils,
+    tidyr
 Language: en-US
 License: GPL-3
 LazyData: true
